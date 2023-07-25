@@ -1,7 +1,9 @@
+import Dashboard from "./Dashboard";
+
 function App() {
   return (
     <>
-      <div className="text-3xl">hello world</div>
+      <Dashboard />
     </>
   );
 }

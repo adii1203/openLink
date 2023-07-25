@@ -7,3 +7,8 @@
 [ ] USER CAN SHARE THEIR CUSTOM LINK TO EVERYONE
 
 [ ] ALL PEOPLES CAN SEE AN USER LINKS PAGE 
+
+// URLS
+
+/<username> -> public
+/dashboard -> private
