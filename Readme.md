@@ -1,6 +1,6 @@
 # open link
 
-A open source project similler to [linktr.ee](https://linktr.ee). where you can add all your social media links under a single URL.
+An open source project similler to [linktr.ee](https://linktr.ee). where you can add all your social media links under a single URL.
 
 ## Tech Stack
 
