@@ -1,6 +1,33 @@
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
 
 const Login = () => {
+  const { setUser } = useContext(AuthContext);
+  const [isLoadign, setIsLoading] = useState(false);
+  const [userData, setUserData] = useState({
+    userName: "",
+    password: "",
+  });
+
+  const handleLogin = async () => {
+    try {
+      setIsLoading(true);
+      const res = await axios("http://localhost:3000/login", {
+        method: "post",
+        withCredentials: true,
+        data: userData,
+      });
+      console.log(res);
+      setUser(res.data.data.user);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <section>
@@ -40,7 +67,7 @@ const Login = () => {
                   Create One
                 </Link>
               </p>
-              <form action="#" method="POST" className="mt-8">
+              <form className="mt-8">
                 <div className="space-y-5 w-[20rem] lg:w-full">
                   <div>
                     <label
@@ -53,6 +80,10 @@ const Login = () => {
                       <input
                         className="text-white flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         type="text"
+                        value={userData.userName}
+                        onChange={(e) =>
+                          setUserData({ ...userData, userName: e.target.value })
+                        }
                         placeholder="Username"
                         id="email"></input>
                     </div>
@@ -76,6 +107,11 @@ const Login = () => {
                     <div className="mt-2">
                       <input
                         className="text-white flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                        disabled={isLoadign}
+                        value={userData.password}
+                        onChange={(e) =>
+                          setUserData({ ...userData, password: e.target.value })
+                        }
                         type="password"
                         placeholder="Password"
                         id="password"></input>
@@ -84,7 +120,9 @@ const Login = () => {
                   <div>
                     <button
                       type="button"
-                      className="inline-flex w-full items-center justify-center rounded-md bg-purple-600 px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-purple-600/80">
+                      disabled={isLoadign}
+                      onClick={handleLogin}
+                      className=" disabled:cursor-not-allowed disabled:opacity-50 inline-flex w-full items-center justify-center rounded-md bg-purple-600 px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-purple-600/80">
                       Log in
                     </button>
                   </div>

@@ -1,7 +1,7 @@
 const MoreOpt = () => {
   return (
     <div className="rounded-md  border-purple-600/40 border bg-[#13111c] py-2 px-2 ">
-      <ul className="text-left w-[10rem] lg:w-[12rem] grid gap-2">
+      <ul className="text-left w-[8rem] lg:w-[12rem] grid gap-2">
         <li className="hover:bg-gray-400/10 rounded py-1 px-2 lg:px-4 font-medium opacity-[0.5] hover:opacity-100">
           <button className="flex items-center capitalize gap-3">
             <svg

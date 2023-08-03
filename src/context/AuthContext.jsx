@@ -1,16 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
+import useAuth from "../hooks/useAuth";
 
 export const AuthContext = createContext({});
 
 // eslint-disable-next-line react/prop-types
-const AuthProvider = ({ children }) => {
-  const [acessToken, setAcessToken] = useState("");
-  const [user, setUser] = useState({});
+const ContextProvider = ({ children }) => {
+  const { user, accessToken, isLoading, setUser } = useAuth();
 
   return (
     <AuthContext.Provider
       value={{
-        setAcessToken,
+        accessToken,
+        user,
+        isLoading,
         setUser,
       }}>
       {children}
@@ -18,4 +20,4 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export default AuthProvider;
+export default ContextProvider;

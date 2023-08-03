@@ -5,7 +5,7 @@ const SingleUrl = ({ url }) => {
   return (
     <>
       <div>
-        <div className="text-white hover:bg-[#211f2d] bg-[#181622] py-2 px-4 rounded-xl sm:w-[80%] lg:w-1/2 mx-auto shadow-box border-[#2d2a36] border">
+        <div className="text-white hover:bg-[#211f2d] bg-[#181622] py-2 px-4 rounded-xl sm:w-[100%] lg:w-1/2 mx-auto shadow-box border-[#2d2a36] border">
           <div className="flex items-center justify-between">
             <p className="text-lg font-[500] capitalize">{url.title}</p>
             <div>
@@ -57,7 +57,7 @@ const SingleUrl = ({ url }) => {
                   fill="#fff"
                 />
               </svg>
-              <div className=" z-50 hidden group-hover:block absolute top-0 -left-[290%] sm:left-1/2 sm:pt-0 pt-10 sm:pl-14 lg:pl-16 -ml-4 h-full">
+              <div className=" z-50 hidden group-hover:block absolute top-0 -left-[290%] lg:left-1/2 lg:pt-0 pt-10 lg:pl-16 -ml-4 h-full">
                 <MoreOpt />
               </div>
             </button>
