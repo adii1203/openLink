@@ -18,7 +18,7 @@ export function Signup() {
     const findUserName = async () => {
       try {
         setLoading(true);
-        const res = await axios("/findUsername", {
+        const res = await axios("/auth/findUsername", {
           method: "get",
           headers: {
             username: userName,
@@ -40,7 +40,7 @@ export function Signup() {
       console.log("all fields are required");
     } else {
       try {
-        const res = await axios("/signin", {
+        const res = await axios("/auth/signin", {
           method: "post",
           data: {
             email: details.email,

@@ -4,8 +4,8 @@ import useAuth from "../hooks/useAuth";
 export const AuthContext = createContext({});
 
 // eslint-disable-next-line react/prop-types
-const ContextProvider = ({ children }) => {
-  const { user, accessToken, isLoading, setUser } = useAuth();
+const AuthProvider = ({ children }) => {
+  const { user, accessToken, isLoading, setUser, setAccessToken } = useAuth();
 
   return (
     <AuthContext.Provider
@@ -14,10 +14,11 @@ const ContextProvider = ({ children }) => {
         user,
         isLoading,
         setUser,
+        setAccessToken,
       }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export default ContextProvider;
+export default AuthProvider;

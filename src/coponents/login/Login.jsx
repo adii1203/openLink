@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
+import axios from "../../api/axios";
 
 const Login = () => {
-  const { setUser } = useContext(AuthContext);
+  const { setUser, setAccessToken } = useContext(AuthContext);
   const [isLoadign, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({
     userName: "",
@@ -14,13 +14,14 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       setIsLoading(true);
-      const res = await axios("http://localhost:3000/login", {
+      const res = await axios("/auth/login", {
         method: "post",
         withCredentials: true,
         data: userData,
       });
       console.log(res);
       setUser(res.data.data.user);
+      setAccessToken(res.data.data.accessToken);
     } catch (error) {
       console.log(error);
     } finally {

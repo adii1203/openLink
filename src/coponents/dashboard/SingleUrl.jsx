@@ -1,7 +1,15 @@
 import MoreOpt from "./MoreOpt";
+import { UserContext } from "../../context/UserContext";
+import { useContext } from "react";
 
 /* eslint-disable react/prop-types */
-const SingleUrl = ({ url }) => {
+const SingleUrl = ({ url, click, show }) => {
+  const { updateVisibel } = useContext(UserContext);
+
+  // useEffect(() => {
+  //   console.log(show);
+  // }, [show]);
+
   return (
     <>
       <div>
@@ -12,7 +20,7 @@ const SingleUrl = ({ url }) => {
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   checked={url.isActive}
-                  // onChange={item.isActive}
+                  onChange={() => updateVisibel(url._id, url.isActive)}
                   type="checkbox"
                   value=""
                   className="sr-only peer"
@@ -28,39 +36,47 @@ const SingleUrl = ({ url }) => {
               href={url.url}>
               {url.url}
             </a>
-            <button className="group relative hover:bg-[#211f2d] rounded-full">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28px"
-                height="28px"
-                viewBox="0 0 24 24"
-                fill="none">
-                <circle
-                  cx="18"
-                  cy="12"
-                  r="1.5"
-                  transform="rotate(90 18 12)"
-                  fill="#fff"
-                />
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="1.5"
-                  transform="rotate(90 12 12)"
-                  fill="#fff"
-                />
-                <circle
-                  cx="6"
-                  cy="12"
-                  r="1.5"
-                  transform="rotate(90 6 12)"
-                  fill="#fff"
-                />
-              </svg>
-              <div className=" z-50 hidden group-hover:block absolute top-0 -left-[290%] lg:left-1/2 lg:pt-0 pt-10 lg:pl-16 -ml-4 h-full">
-                <MoreOpt />
+            <div className="relative ">
+              <button
+                onClick={() => click(url._id)}
+                className="hover:bg-white/20 rounded-full">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28px"
+                  height="28px"
+                  viewBox="0 0 24 24"
+                  fill="none">
+                  <circle
+                    cx="18"
+                    cy="12"
+                    r="1.5"
+                    transform="rotate(90 18 12)"
+                    fill="#fff"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="1.5"
+                    transform="rotate(90 12 12)"
+                    fill="#fff"
+                  />
+                  <circle
+                    cx="6"
+                    cy="12"
+                    r="1.5"
+                    transform="rotate(90 6 12)"
+                    fill="#fff"
+                  />
+                </svg>
+              </button>
+              <div>
+                {show.includes(url._id) && (
+                  <div className=" z-50 absolute -left-[290%] lg:top-0 lg:left-[5rem]  -ml-4 h-full">
+                    <MoreOpt url={url} />
+                  </div>
+                )}
               </div>
-            </button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,10 +1,22 @@
 /* eslint-disable react/prop-types */
-// import Loading from "./Loading";
 import SingleUrl from "./SingleUrl";
 import Loading from "./Loading";
+import { UserContext } from "../../context/UserContext";
+import { useContext } from "react";
+import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const Urls = ({ isLoading, allUrls, setCreateLink }) => {
+const Urls = ({ isLoading, setCreateLink }) => {
+  const { allUrls } = useContext(UserContext);
+  const [show, setShow] = useState([]);
+  const click = (id) => {
+    if (show.includes(id)) {
+      setShow([]);
+    } else {
+      setShow([id]);
+    }
+  };
+
   return (
     <div className="mt-8 px-4 py-4 flex flex-col gap-4 sm:justify-start">
       <div>
@@ -39,7 +51,9 @@ const Urls = ({ isLoading, allUrls, setCreateLink }) => {
         <Loading />
       ) : allUrls?.length ? (
         allUrls?.map((url) => {
-          return <SingleUrl url={url} key={url._id} />;
+          return (
+            <SingleUrl click={click} show={show} url={url} key={url._id} />
+          );
         })
       ) : (
         <div className="text-white capitalize text-lg font-semibold text-center">

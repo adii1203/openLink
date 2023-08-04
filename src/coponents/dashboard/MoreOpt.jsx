@@ -1,4 +1,8 @@
-const MoreOpt = () => {
+import { UserContext } from "../../context/UserContext";
+import { useContext } from "react";
+// eslint-disable-next-line react/prop-types
+const MoreOpt = ({ url }) => {
+  const { deleteUrl } = useContext(UserContext);
   return (
     <div className="rounded-md  border-purple-600/40 border bg-[#13111c] py-2 px-2 ">
       <ul className="text-left w-[8rem] lg:w-[12rem] grid gap-2">
@@ -69,7 +73,9 @@ const MoreOpt = () => {
           </button>
         </li>
         <li className=" hover:bg-gray-400/10 py-1 px-2 lg:px-4 rounded font-medium opacity-[0.5] hover:opacity-100 text-red-500">
-          <button className=" flex items-center capitalize gap-2">
+          <button
+            onClick={() => deleteUrl(url)}
+            className=" flex items-center capitalize gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"

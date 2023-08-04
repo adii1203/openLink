@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../api/axios";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -11,11 +11,11 @@ const useAuth = () => {
     const isLogedinUser = async () => {
       try {
         setIsLoading(true);
-        const res = await axios("http://localhost:3000/auth", {
+        const res = await axios("/auth/verify", {
           method: "get",
           withCredentials: true,
         });
-        // console.log(res);
+        console.log(res);
         setUser(res.data.data.user);
         setAccessToken(res.data.data.accessToken);
       } catch (error) {
@@ -28,7 +28,7 @@ const useAuth = () => {
     isLogedinUser();
   }, []);
 
-  return { isLoading, user, accessToken, setUser };
+  return { isLoading, user, accessToken, setUser, setAccessToken };
 };
 
 export default useAuth;

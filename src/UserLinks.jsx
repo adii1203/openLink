@@ -44,8 +44,12 @@ const UserLinks = () => {
                       className="flex items-center w-full text-center font-medium text-lg capitalize"
                       href={link.url}>
                       <div
-                        className={`mx-1 my-1 w-[50px]  h-[50px] rounded-md overflow-hidden`}>
-                        <img src={link.image} alt="" className="object" />
+                        className={`mx-1 my-1 w-[70px]  h-[70px] rounded-md overflow-hidden`}>
+                        <img
+                          src={link.image}
+                          alt=""
+                          className="h-full object-cover"
+                        />
                       </div>
                       <p className="flex-1">{link.title}</p>
                     </a>

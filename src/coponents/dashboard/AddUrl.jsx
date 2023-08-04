@@ -1,15 +1,19 @@
 import { useContext, useEffect, useState } from "react";
-import axios from "../../api/axios";
+// import axios from "../../api/axios";
 import { AuthContext } from "../../context/AuthContext";
+import { UserContext } from "../../context/UserContext";
+import useAxios from "../../hooks/useAxios";
 
 // eslint-disable-next-line react/prop-types
-const AddUrl = ({ setCreateLink, setAllUrls, allUrls }) => {
+const AddUrl = ({ setCreateLink }) => {
+  const axiosPrivateInstance = useAxios();
   const { accessToken } = useContext(AuthContext);
+  const { allUrls, setAllUrls } = useContext(UserContext);
   const [urlValue, setUrlValue] = useState("");
   const [validUrl, setValidUrl] = useState(false);
   const CreateUrl = async () => {
     try {
-      const res = await axios("/create", {
+      const res = await axiosPrivateInstance("/api/create", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
@@ -19,9 +23,10 @@ const AddUrl = ({ setCreateLink, setAllUrls, allUrls }) => {
           urlValue,
         },
       });
-      setAllUrls([...allUrls, res.data.data.urlData]);
-      setCreateLink(false);
-      console.log(res);
+      if (res.status === 200) {
+        setAllUrls([...allUrls, res.data.data.urlData]);
+        setCreateLink(false);
+      }
     } catch (error) {
       console.log(error);
     }
