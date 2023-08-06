@@ -9,7 +9,7 @@ function App() {
       <Routes>
         {/* Protectrd Routes */}
         <Route path="/" element={<ProtectedRoute />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route element={<Dashboard />} />
         </Route>
 
         {/* UnProtected Routes */}
@@ -18,7 +18,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
         </Route>
 
-        <Route path=":username" element={<UserLinks />} />
+        <Route path="/:username" element={<UserLinks />} />
       </Routes>
     </>
   );
