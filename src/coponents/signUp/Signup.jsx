@@ -3,8 +3,10 @@ import axios from "../../api/axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Sucess from "./Sucess";
+import { useLocation } from "react-router-dom";
 
 export function Signup() {
+  const { username } = useLocation().state;
   const [userName, setUsername] = useState("");
   const [details, setDetails] = useState({
     email: "",
@@ -111,7 +113,7 @@ export function Signup() {
                         className="text-white flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-200 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                         type="text"
                         autoComplete="none"
-                        value={userName}
+                        value={username || userName}
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder="Username"
                         id="name"></input>

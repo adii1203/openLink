@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./coponents/dashboard/Loading";
+import NotFound from "./NotFound";
 const UserLinks = () => {
   const { username } = useParams();
   const [allLinks, setAllLinks] = useState([]);
@@ -12,9 +13,12 @@ const UserLinks = () => {
     const getUrls = async () => {
       try {
         setIsLoading(true);
-        const res = await axios(`http://localhost:3000/${username}`, {
-          method: "get",
-        });
+        const res = await axios(
+          `https://server-openlink-production.up.railway.app/${username}`,
+          {
+            method: "get",
+          }
+        );
         setAllLinks(res.data);
       } catch (error) {
         console.log(error);
@@ -35,7 +39,7 @@ const UserLinks = () => {
           <Loading />
         </div>
       ) : pageNotFound ? (
-        <div>page not found</div>
+        <NotFound username={username} />
       ) : (
         <div className="bg-black/10 h-screen">
           <div className="w-full flex flex-col gap-8 md:w-[80%] md:mx-auto px-2 py-8 lg:w-[40%] lg:mx-auto">
