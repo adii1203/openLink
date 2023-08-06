@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { UserContext } from "../../context/UserContext";
 import useAxios from "../../hooks/useAxios";
+import { toast } from "react-hot-toast";
 
 // eslint-disable-next-line react/prop-types
 const AddUrl = ({ setCreateLink }) => {
@@ -13,6 +14,7 @@ const AddUrl = ({ setCreateLink }) => {
   const [validUrl, setValidUrl] = useState(false);
   const CreateUrl = async () => {
     try {
+      toast.loading("loading...");
       const res = await axiosPrivateInstance("/api/create", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -24,11 +26,15 @@ const AddUrl = ({ setCreateLink }) => {
         },
       });
       if (res.status === 200) {
+        toast.remove();
+        toast.success("success");
         setAllUrls([...allUrls, res.data.data.urlData]);
         setCreateLink(false);
       }
     } catch (error) {
+      toast.remove();
       console.log(error);
+      toast.error("error");
     }
   };
   const urlRegex =

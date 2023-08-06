@@ -1,26 +1,28 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "./coponents/dashboard/Loading";
 const UserLinks = () => {
   const { username } = useParams();
   const [allLinks, setAllLinks] = useState([]);
   const [pageNotFound, setPageNotFound] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getUrls = async () => {
       try {
-        const res = await axios(
-          `https://server-openlink-production.up.railway.app/${username}`,
-          {
-            method: "get",
-          }
-        );
+        setIsLoading(true);
+        const res = await axios(`http://localhost:3000/${username}`, {
+          method: "get",
+        });
         setAllLinks(res.data);
       } catch (error) {
         console.log(error);
         if (error.response.status === 404) {
           setPageNotFound(true);
         }
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -28,7 +30,11 @@ const UserLinks = () => {
   }, []);
   return (
     <>
-      {pageNotFound ? (
+      {isLoading ? (
+        <div className="px-2 py-8">
+          <Loading />
+        </div>
+      ) : pageNotFound ? (
         <div>page not found</div>
       ) : (
         <div className="bg-black/10 h-screen">
