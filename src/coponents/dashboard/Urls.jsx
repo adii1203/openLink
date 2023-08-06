@@ -18,7 +18,7 @@ const Urls = ({ isLoading, setCreateLink }) => {
   };
 
   return (
-    <div className="mt-8 px-4 py-4 flex flex-col gap-4 sm:justify-start">
+    <div className="px-4 pb-4 flex flex-col gap-4 sm:justify-start">
       <div>
         <div className="sm:w-[100%] lg:w-1/2 mx-auto mb-8 ">
           <button

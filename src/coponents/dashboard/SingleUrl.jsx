@@ -6,10 +6,6 @@ import { useContext } from "react";
 const SingleUrl = ({ url, click, show }) => {
   const { updateVisibel } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   console.log(show);
-  // }, [show]);
-
   return (
     <>
       <div>

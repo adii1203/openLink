@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://server-openlink-production.up.railway.app",
   withCredentials: true,
 });
 
 export const axiosPrivateInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://server-openlink-production.up.railway.app",
 });

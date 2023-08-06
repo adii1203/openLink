@@ -15,7 +15,7 @@ const useAuth = () => {
           method: "get",
           withCredentials: true,
         });
-        console.log(res);
+
         setUser(res.data.data.user);
         setAccessToken(res.data.data.accessToken);
       } catch (error) {

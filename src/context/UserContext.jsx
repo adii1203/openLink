@@ -26,9 +26,7 @@ const UserProvider = ({ children }) => {
           isActive: isActive,
         },
       });
-      // console.log(res);
     } catch (error) {
-      // console.log(error);
       if (error.status === 403) {
         const item = allUrls.map((url) =>
           url._id === id ? { ...url, isActive: isActive } : url
@@ -48,10 +46,8 @@ const UserProvider = ({ children }) => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(res);
     } catch (error) {
       console.log(error);
-      console.log("in err");
     }
   };
   return (

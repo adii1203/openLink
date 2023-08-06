@@ -19,7 +19,6 @@ const Login = () => {
         withCredentials: true,
         data: userData,
       });
-      console.log(res);
       setUser(res.data.data.user);
       setAccessToken(res.data.data.accessToken);
     } catch (error) {
