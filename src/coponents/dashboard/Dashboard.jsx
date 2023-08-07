@@ -5,8 +5,10 @@ import Profile from "./Profile";
 import axios, { axiosPrivateInstance } from "../../api/axios";
 import { AuthContext } from "../../context/AuthContext";
 import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const { accessToken, setUser } = useContext(AuthContext);
   const { setAllUrls } = useContext(UserContext);
   const [createLink, setCreateLink] = useState(false);
@@ -44,6 +46,7 @@ const Dashboard = () => {
       });
       if (res.status === 200) {
         setUser({});
+        navigate("/login");
       }
     } catch (error) {
       console.log(error);

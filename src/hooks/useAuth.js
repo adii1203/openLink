@@ -26,7 +26,7 @@ const useAuth = () => {
     };
 
     isLogedinUser();
-  }, []);
+  }, [user]);
 
   return { isLoading, user, accessToken, setUser, setAccessToken };
 };
