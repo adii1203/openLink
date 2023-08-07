@@ -7,8 +7,8 @@ import { AuthContext } from "../../context/AuthContext";
 import { UserContext } from "../../context/UserContext";
 
 const Dashboard = () => {
-  const { accessToken } = useContext(AuthContext);
-  const { setAllUrls, setUser } = useContext(UserContext);
+  const { accessToken, setUser } = useContext(AuthContext);
+  const { setAllUrls } = useContext(UserContext);
   const [createLink, setCreateLink] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
