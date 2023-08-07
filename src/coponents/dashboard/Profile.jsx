@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Profile = () => {
+const Profile = ({ handelLogout }) => {
   const [showProfile, setShowProfile] = useState(false);
   return (
     <div className="w-screen">
@@ -58,7 +58,7 @@ const Profile = () => {
                 </li>
                 <li className=" hover:bg-gray-400/10 py-1 px-2 lg:px-4 rounded font-medium opacity-[0.5] hover:opacity-100 text-red-500">
                   <button
-                    // onClick={() => deleteUrl(url)}
+                    onClick={handelLogout}
                     className=" flex items-center capitalize gap-2 w-full">
                     <svg
                       width="24"
