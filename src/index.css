@@ -33,3 +33,9 @@ body {
     ),
     #13111c;
 }
+
+.div {
+  height: calc(100vh - 4rem);
+  /* border: 2px solid red; */
+  overflow: auto;
+}

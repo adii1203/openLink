@@ -10,8 +10,8 @@ const Edit = () => {
   return (
     // <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-1/2 ">
     <>
-      <div className="absolute inset-0 bg-white/5"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#181823] border border-purple-500/40 w-[20rem] px- py- rounded-xl">
+      <div className="z-50 absolute inset-0 bg-white/5"></div>
+      <div className="z-50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#181823] border border-purple-500/40 w-[20rem] px- py- rounded-xl">
         <div className="text-white text-right pr-4 py-2">
           <button
             onClick={() => {
