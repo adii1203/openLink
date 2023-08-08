@@ -50,6 +50,29 @@ const UserProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const updateTitleAndUrl = async (data) => {
+    const updatedData = allUrls.map((url) =>
+      url._id === data._id ? { ...data, title: data.title, url: data.url } : url
+    );
+    setAllUrls(updatedData);
+
+    try {
+      const res = await axiosPrivateInstance(`/api/update/${data._id}`, {
+        method: "post",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        data: {
+          title: data.title,
+          url: data.url,
+        },
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <UserContext.Provider
       value={{
@@ -57,6 +80,7 @@ const UserProvider = ({ children }) => {
         allUrls,
         setAllUrls,
         deleteUrl,
+        updateTitleAndUrl,
       }}>
       {children}
     </UserContext.Provider>

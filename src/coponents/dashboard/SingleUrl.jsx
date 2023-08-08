@@ -11,7 +11,7 @@ const SingleUrl = ({ url, click, show }) => {
       <div>
         <div className="text-white hover:bg-[#211f2d] bg-[#181622] py-2 px-4 rounded-xl sm:w-[100%] lg:w-1/2 mx-auto shadow-box border-[#2d2a36] border">
           <div className="flex items-center justify-between">
-            <p className="text-lg font-[500] capitalize">{url.title}</p>
+            <p className="text-lg font-[500]">{url.title}</p>
             <div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input

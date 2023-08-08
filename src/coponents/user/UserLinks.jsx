@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Loading from "./coponents/dashboard/Loading";
+import Loading from "../dashboard/Loading";
 import NotFound from "./NotFound";
 const UserLinks = () => {
   const { username } = useParams();
@@ -13,12 +13,9 @@ const UserLinks = () => {
     const getUrls = async () => {
       try {
         setIsLoading(true);
-        const res = await axios(
-          `https://server-openlink-production.up.railway.app/${username}`,
-          {
-            method: "get",
-          }
-        );
+        const res = await axios(`http://localhost:3000/${username}`, {
+          method: "get",
+        });
         setAllLinks(res.data);
       } catch (error) {
         console.log(error);

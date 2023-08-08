@@ -23,7 +23,7 @@ const Urls = ({ isLoading, setCreateLink }) => {
         <div className="sm:w-[100%] lg:w-1/2 mx-auto mb-8 ">
           <button
             onClick={() => setCreateLink(true)}
-            className="flex justify-center gap-2 w-full text-white bg-black/10 outline outline-[.567px] outline-purple-500 hover:bg-purple-500/20 transition-colors py-2 rounded">
+            className="flex justify-center gap-2 w-full text-white bg-[#181622] outline outline-[.567px] outline-purple-500 hover:bg-purple-500/20 transition-colors py-2 rounded">
             <svg
               width="24"
               height="24"

@@ -1,13 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 // eslint-disable-next-line react/prop-types
 const MoreOpt = ({ url }) => {
+  const navigate = useNavigate();
   const { deleteUrl } = useContext(UserContext);
   return (
     <div className="rounded-md  border-purple-600/40 border bg-[#13111c] py-2 px-2 ">
       <ul className="text-left w-[8rem] lg:w-[12rem] grid gap-2">
         <li className="hover:bg-gray-400/10 rounded py-1 px-2 lg:px-4 font-medium opacity-[0.5] hover:opacity-100">
-          <button className="flex items-center capitalize gap-3">
+          <button
+            onClick={() => {
+              navigate(`/edit/${url._id}`, { state: { urlData: url } });
+            }}
+            className="flex items-center capitalize gap-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

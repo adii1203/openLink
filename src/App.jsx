@@ -1,16 +1,19 @@
-import UserLinks from "./UserLinks";
+import UserLinks from "./coponents/user/UserLinks";
 import { Routes, Route } from "react-router-dom";
 import { Dashboard, Login, Signup } from "./index";
 import UnProtectedRoute from "./coponents/UnProtectedRoute";
 import ProtectedRoute from "./coponents/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import Edit from "./coponents/dashboard/Edit";
 function App() {
   return (
     <>
       <Routes>
         {/* Protectrd Routes */}
         <Route path="/" element={<ProtectedRoute />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />}>
+            <Route path="edit/:id" element={<Edit />} />
+          </Route>
         </Route>
 
         {/* UnProtected Routes */}

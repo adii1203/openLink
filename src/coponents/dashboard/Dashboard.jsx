@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import Urls from "./Urls";
 import AddUrl from "./AddUrl";
 import Profile from "./Profile";
-import axios, { axiosPrivateInstance } from "../../api/axios";
+import { axiosPrivateInstance } from "../../api/axios";
 import { AuthContext } from "../../context/AuthContext";
 import { UserContext } from "../../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Dashboard = () => {
       try {
         setIsLoading(true);
 
-        const res = await axios("/api/user", {
+        const res = await axiosPrivateInstance("/api/user", {
           method: "get",
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -52,18 +52,21 @@ const Dashboard = () => {
       console.log(error);
     }
   };
-
+  // #0e0d14
   return (
-    <div className="bg-black/5 h-full relative">
-      <div>
-        <Profile handelLogout={handelLogout} />
-      </div>
-      <div className="w-full">
-        <div className="w-full sm:w-[100%] lg:[80%] sm:mx-auto px-4 pt-12 pb-8">
-          <Urls isLoading={isLoading} setCreateLink={setCreateLink} />
-
-          {createLink && <AddUrl setCreateLink={setCreateLink} />}
+    <div className="flex flex-col bg-black/40 bg-dashboard bg-dash_size bg-repeat min-h-screen ">
+      <div className=" flex-grow h-full relative">
+        <div>
+          <Profile handelLogout={handelLogout} />
         </div>
+        <div className="w-full">
+          <div className="w-full sm:w-[100%] lg:[80%] sm:mx-auto px-4 pt-12 pb-8">
+            <Urls isLoading={isLoading} setCreateLink={setCreateLink} />
+
+            {createLink && <AddUrl setCreateLink={setCreateLink} />}
+          </div>
+        </div>
+        <Outlet />
       </div>
     </div>
   );
