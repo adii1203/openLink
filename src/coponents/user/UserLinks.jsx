@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import Loading from "../dashboard/Loading";
 import NotFound from "./NotFound";
 const UserLinks = () => {
@@ -13,7 +13,7 @@ const UserLinks = () => {
     const getUrls = async () => {
       try {
         setIsLoading(true);
-        const res = await axios(`https://server.openurl.me/${username}`, {
+        const res = await axios(`/${username}`, {
           method: "get",
         });
         setAllLinks(res.data);
@@ -39,7 +39,7 @@ const UserLinks = () => {
         <NotFound username={username} />
       ) : (
         <div className="bg-[#0e0d14] flex flex-col">
-          <div className=" div">
+          <div className=" div ">
             <div className=" w-full flex flex-col gap-4 md:w-[80%] md:mx-auto px-2 py-8 lg:w-[40%] lg:mx-auto">
               {allLinks?.map((link) => {
                 return (
@@ -69,8 +69,8 @@ const UserLinks = () => {
           </div>
 
           <div className=" fixed bottom-0 w-full mb-3">
-            <div className="capitalize font-medium justify-between items-center px-4 text-white bg-[#211f2d] mx-2 rounded-md flex ">
-              <div className="grid gap-2 py-3">
+            <div className=" text-sm capitalize font-medium justify-between items-center py-2  px-4 text-white bg-[#211f2d] mx-2 rounded-md sm:flex ">
+              <div className="grid md:gap-2 sm:py-3">
                 <p>
                   made by{" "}
                   <a
@@ -85,7 +85,7 @@ const UserLinks = () => {
                   <a
                     href="https://openurl.me"
                     className="text-purple-400 hover:underline">
-                    openurl profile
+                    openurl profile.
                   </a>
                 </div>
               </div>
@@ -96,7 +96,7 @@ const UserLinks = () => {
                   rel="create issue on github"
                   href="https://github.com/adii1203/openLink/issues/new"
                   className="text-purple-400 hover:underline">
-                  github
+                  github.
                 </a>
               </div>
             </div>
