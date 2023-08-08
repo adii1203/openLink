@@ -13,7 +13,7 @@ const UserLinks = () => {
     const getUrls = async () => {
       try {
         setIsLoading(true);
-        const res = await axios(`http://localhost:3000/${username}`, {
+        const res = await axios(`https://server.openurl.me/${username}`, {
           method: "get",
         });
         setAllLinks(res.data);
