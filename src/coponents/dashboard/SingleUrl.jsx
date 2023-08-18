@@ -1,11 +1,14 @@
 import MoreOpt from "./MoreOpt";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 /* eslint-disable react/prop-types */
-const SingleUrl = ({ url, click, show }) => {
+const SingleUrl = ({ url, click, show, setShow }) => {
   const { updateVisibel } = useContext(UserContext);
-
+  let domNode = useClickOutside(() => {
+    setShow([]);
+  });
   return (
     <>
       <div>
@@ -25,7 +28,7 @@ const SingleUrl = ({ url, click, show }) => {
               </label>
             </div>
           </div>
-          <div className="flex items-center justify-between mt-2">
+          <div ref={domNode} className="flex items-center justify-between mt-2">
             <a
               className="font-[500] text-sm text-blue-500 underline"
               target="_blanck"

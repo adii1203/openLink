@@ -52,7 +52,13 @@ const Urls = ({ isLoading, setCreateLink }) => {
       ) : allUrls?.length ? (
         allUrls?.map((url) => {
           return (
-            <SingleUrl click={click} show={show} url={url} key={url._id} />
+            <SingleUrl
+              click={click}
+              show={show}
+              url={url}
+              key={url._id}
+              setShow={setShow}
+            />
           );
         })
       ) : (

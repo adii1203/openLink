@@ -1,17 +1,26 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useClickOutside } from "../../hooks/useClickOutside";
 const Profile = ({ handelLogout }) => {
+  const navigate = useNavigate();
   const [showProfile, setShowProfile] = useState(false);
+  let domNode = useClickOutside(() => {
+    setShowProfile(false);
+  });
+
   return (
     <div className="w-screen">
-      <div className="relative px-4 py-4 sm:w-[100%] lg:w-[70%] mx-auto flex justify-end">
+      <div
+        ref={domNode}
+        className="relative px-4 py-4 sm:w-[100%] lg:w-[70%] mx-auto flex justify-end">
         <button
           onClick={() => setShowProfile(!showProfile)}
           className="flex items-center gap-2">
           <div className="ring-offset-2 ring-2  ring-purple-500 ring-offset-black w-[35px] rounded-full overflow-hidden">
             <img
               className="object-cover"
-              src="https://scontent.cdninstagram.com/v/t51.2885-19/363293947_841741510624736_5647582590417937457_n.jpg?stp=dst-jpg_s100x100&_nc_cat=106&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=4o-Tb44ozhAAX_RcyT6&_nc_ht=scontent.cdninstagram.com&oh=00_AfARwBnyAvynY0MLi8qaUOAxrBx0N1POuH1q8Fvholys_Q&oe=64D539EC"
+              // src="https://scontent.cdninstagram.com/v/t51.2885-19/363293947_841741510624736_5647582590417937457_n.jpg?stp=dst-jpg_s100x100&_nc_cat=106&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=4o-Tb44ozhAAX_RcyT6&_nc_ht=scontent.cdninstagram.com&oh=00_AfARwBnyAvynY0MLi8qaUOAxrBx0N1POuH1q8Fvholys_Q&oe=64D539EC"
+              src="https://clipground.com/images/white-profile-icon-clipart-2.png"
               alt=""
             />
           </div>
@@ -29,11 +38,13 @@ const Profile = ({ handelLogout }) => {
         </button>
 
         {showProfile && (
-          <div className=" absolute -bottom-[140%] lg:-right-[15%]">
+          <div className="absolute -bottom-[140%] lg:-right-[15%]">
             <div className="rounded-md  border-gray-400 border bg-[#13111c] py-2 px-2 ">
               <ul className="text-white text-left w-[8rem] sm:w-[12rem] lg:w-[16rem] grid gap-2">
                 <li className="hover:bg-gray-400/10 py-1 px-2 rounded lg:px-4 font-medium opacity-[0.5] hover:opacity-100">
-                  <button className="flex items-center capitalize gap-3 w-full">
+                  <button
+                    onClick={() => navigate("/settings")}
+                    className="flex items-center capitalize gap-3 w-full">
                     <svg
                       width="24"
                       height="24"
