@@ -3,10 +3,8 @@ import axios from "../../api/axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Sucess from "./Sucess";
-// import { useLocation } from "react-router-dom";
 
 export function Signup() {
-  // const { username } = useLocation().state;
   const [userName, setUsername] = useState("");
   const [details, setDetails] = useState({
     email: "",
@@ -17,15 +15,17 @@ export function Signup() {
   const [sucess, setSucess] = useState(false);
 
   useEffect(() => {
+    if (!userName) return;
+    setLoading(true);
     const findUserName = async () => {
       try {
-        setLoading(true);
         const res = await axios("/auth/findUsername", {
           method: "get",
           headers: {
             username: userName,
           },
         });
+        console.log(res);
         setUsernameExist(!res.data.data.avilable);
       } catch (error) {
         console.log(error);
@@ -33,7 +33,9 @@ export function Signup() {
         setLoading(false);
       }
     };
-    findUserName();
+
+    const timer = setTimeout(() => findUserName(), 1000);
+    return () => clearTimeout(timer);
   }, [userName]);
 
   const handleSignin = async () => {
@@ -58,6 +60,7 @@ export function Signup() {
       }
     }
   };
+
   return (
     <section>
       <Link
