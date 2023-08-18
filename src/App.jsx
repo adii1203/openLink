@@ -5,6 +5,7 @@ import UnProtectedRoute from "./coponents/UnProtectedRoute";
 import ProtectedRoute from "./coponents/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import Edit from "./coponents/dashboard/Edit";
+import Settings from "./coponents/settings/Settings";
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Dashboard />}>
             <Route path="edit/:id" element={<Edit />} />
           </Route>
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         {/* UnProtected Routes */}
